@@ -159,7 +159,7 @@ public class Manager {
             }
             System.out.println("Load Map MobTemplate..");
             try {
-                res = SQLManager.stat.executeQuery("SELECT * FROM `Mob`;");
+                res = SQLManager.stat.executeQuery("SELECT * FROM `mob`;");
                 if (res.last()) {
                     Mob.arrMobTemplate = new MobCache[res.getRow()];
                     res.beforeFirst();
@@ -256,7 +256,7 @@ public class Manager {
         Service.createCacheItem();
         Service.createCacheMap();
         SQLManager.close();
-        SQLManager.create(this.mysql_host, this.mysql_port, this.mysql_database_data, this.mysql_user, this.mysql_pass);
+        SQLManager.create(Manager.mysql_host, Manager.mysql_port, Manager.mysql_database_data, Manager.mysql_user, Manager.mysql_pass);
         loadDataBase();
     }
 
@@ -268,7 +268,7 @@ public class Manager {
         }
 
         String data = new String(ab);
-        HashMap<String, String> configMap = new HashMap();
+        HashMap<String, String> configMap = new HashMap<String, String>();
         StringBuilder sbd = new StringBuilder();
         boolean bo = false;
 
@@ -681,7 +681,7 @@ public class Manager {
             res.close();
 
             i = 0;
-            for(res = SQLManager.stat.executeQuery("SELECT * FROM `ItemSell`;"); res.next(); ++i) {
+            for(res = SQLManager.stat.executeQuery("SELECT * FROM `itemsell`;"); res.next(); ++i) {
                 ItemSell sell = new ItemSell();
                 sell.id = Integer.parseInt(res.getString("id"));
                 sell.type = Byte.parseByte(res.getString("type"));
